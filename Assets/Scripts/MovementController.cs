@@ -39,7 +39,6 @@ public class MovementController : MonoBehaviour
 
 
         if(Input.GetKey("w")){
-            Debug.Log("Key down");
             _dir = (_transform.forward * _movementSpeed) + _dir;    
         }
         if(Input.GetKey("s")){

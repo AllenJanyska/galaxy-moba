@@ -44,16 +44,9 @@ public class FireControl : MonoBehaviour
         
         LayerMask mask = ~LayerMask.GetMask("ControlHitBoxes");
 
-
-        Debug.Log(LayerMask.GetMask("Default"));
-
         if(Physics.Raycast(ray, out hit, 300, mask,QueryTriggerInteraction.Ignore)){
             _target = hit.point;
-        } else {
-            Debug.Log("Missed everything");
-        }
-
-
+        } 
     }
 
     void Update(){

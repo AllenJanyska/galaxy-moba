@@ -23,10 +23,6 @@ public class AlignmentControl : MonoBehaviour
     ///<summary> a cache of components for all connected color elements. </summary>
     private LinkedList<colorController> _colorElementCache = new LinkedList<colorController>();
 
-    ///<summary> user defined points where turrets will spawn as an outpost is captured. </summary>
-    [SerializeField] private GameObject[] _turretAnchors;
-
-
     private TeamNames _destTeam;
     private TeamNames _curTeam = TeamNames.None;
 
@@ -41,7 +37,9 @@ public class AlignmentControl : MonoBehaviour
             _colorElementCache.AddFirst(_colorElements[i].GetComponent<colorController>());
 
         }
-        Debug.Log(_colorElementCache.Count);
+        
+        //"Text: " + myText.text
+        Debug.Log("color elements on outpost: " + _colorElementCache.Count);
         _gameController = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameController>();
         _minionCreationCache = gameObject.GetComponent<minionCreation>();
 
@@ -51,11 +49,13 @@ public class AlignmentControl : MonoBehaviour
 
         //checks if the collision is with a player
         if(other.tag == "Player" & _curState == state.neutral){
+            Debug.Log("initializing outpost capture");
             _curState = state.capturing;
             _destTeam = other.gameObject.GetComponent<PlayerProperties>().GetTeam();
             StartCoroutine("Capturing");
         } else if(other.tag == "Player"){
             CancelCap();
+            Debug.Log("outpost capture canceled");
         }
     }
 
