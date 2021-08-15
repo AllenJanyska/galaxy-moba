@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OutpostController : MonoBehaviour
+public class TurretController : MonoBehaviour
 {
 
-    private int turretCount;
 
-    [SerializeField] private GameObject[] turretAnchors; 
-
+    [SerializeField] private GameObject turretObject;
+    private GameObject Target;
+    [SerializeField] private GameObject ammo;
+    
     // Start is called before the first frame update
     void Start()
     {
-
-        
         
     }
 
