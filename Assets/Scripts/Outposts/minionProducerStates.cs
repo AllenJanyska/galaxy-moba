@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class minionProducerState : MonoBehaviour
+public abstract class minionProducerState
 {
     private bool productionEnabled;
     // Start is called before the first frame update
