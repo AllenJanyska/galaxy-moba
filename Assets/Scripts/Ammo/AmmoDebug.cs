@@ -6,6 +6,7 @@ using System.Timers;
 public class AmmoDebug : AmmoBase
 {
 
+    private float damage = 25.0f;
     private Transform _transform;
     private GameObject _parent;
     private Vector3 dir;
@@ -15,11 +16,11 @@ public class AmmoDebug : AmmoBase
 
         _transform = GetComponent<Transform>();
         dir = _transform.forward;
-        StartCoroutine("lifeTimer");
-        setDamage(25.0f);
+        setDamage(damage);
     }
 
-    void FixedUpdate(){
+    void FixedUpdate()
+    {
 
         _transform.Translate(dir, Space.World);
 
@@ -33,14 +34,8 @@ public class AmmoDebug : AmmoBase
         //Vector3 position = contact.point;
         //Instantiate(explosionPrefab, position, rotation);
         Destroy(gameObject);
-        
-        Debug.Log("Hit");
-    }
 
-    private IEnumerator lifeTimer()
-    {
-            yield return new WaitForSeconds(5.0f); // wait 5 seconds
-            Destroy(gameObject);
+        Debug.Log("Hit");
     }
 
 }
