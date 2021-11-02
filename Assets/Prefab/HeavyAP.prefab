@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15c32e43f10b9b46bc816833e3d5f52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  baseDamage: 20
   _projectile: {fileID: 6238577645000419183}
   _speed: 1
 --- !u!1001 &446849311933201132
@@ -102,6 +102,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: af74309e5ac464c7ea9e3f407a74ebfa, type: 3}
+    - target: {fileID: 6520635469067437693, guid: 460649e26eccc3b46b7c9426b7ce659c, type: 3}
+      propertyPath: m_Volume
+      value: 0.18
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2751486920679330309, guid: 460649e26eccc3b46b7c9426b7ce659c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 460649e26eccc3b46b7c9426b7ce659c, type: 3}

@@ -10,9 +10,8 @@ public abstract class AmmoBase : MonoBehaviour
     [SerializeField] private float baseDamage;
 
     // Start is called before the first frame update
-    void Start(float _damage)
+    void Start()
     {
-        baseDamage = _damage;
         _audioSource = gameObject.GetComponent<AudioSource>();
         _audioSource.Play();
         StartCoroutine("lifeTimer");

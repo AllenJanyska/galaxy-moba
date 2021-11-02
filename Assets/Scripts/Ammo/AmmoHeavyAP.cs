@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AmmoHeavyAP : AmmoBase
 {
-    private float damage = 25.0f;
     private Transform _transform;
     private GameObject _parent;
     private Vector3 dir;
@@ -23,7 +22,6 @@ public class AmmoHeavyAP : AmmoBase
     {
         _transform = GetComponent<Transform>();
         dir = _transform.forward;
-        setDamage(damage);
 
     }
 
