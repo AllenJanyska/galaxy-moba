@@ -106,8 +106,13 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.18
       objectReference: {fileID: 0}
+    - target: {fileID: 6520635469067437693, guid: 460649e26eccc3b46b7c9426b7ce659c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2751486920679330309, guid: 460649e26eccc3b46b7c9426b7ce659c, type: 3}
+    - {fileID: 6520635469067437693, guid: 460649e26eccc3b46b7c9426b7ce659c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 460649e26eccc3b46b7c9426b7ce659c, type: 3}
 --- !u!1 &6238577645000419183 stripped
 GameObject:
