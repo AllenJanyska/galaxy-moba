@@ -12,8 +12,6 @@ public abstract class AmmoBase : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _audioSource = gameObject.GetComponent<AudioSource>();
-        _audioSource.Play();
         StartCoroutine("lifeTimer");
     }
 

@@ -10,10 +10,12 @@ public class WeaponController : MonoBehaviour
     public GameObject ammoPrefab;
 
     private Transform _transform;
+    private AudioSource _fireSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        _fireSound = GetComponent<AudioSource>();
         _transform = GetComponent<Transform>();
     }
 
@@ -28,10 +30,10 @@ public class WeaponController : MonoBehaviour
 
         Vector3 targetDirection = targetPoint - _transform.position;
         Quaternion targetHeading = Quaternion.LookRotation(targetDirection, Vector3.up);
-
         Debug.DrawRay(_transform.position, targetDirection, Color.red, 1.0f);
 
         Instantiate(ammoPrefab, _transform.position , targetHeading);
+        _fireSound.Play();
     }
 
 }
