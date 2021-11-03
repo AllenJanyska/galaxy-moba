@@ -19,21 +19,31 @@ public class WeaponController : MonoBehaviour
         _transform = GetComponent<Transform>();
     }
 
-    void Update(){
+    void Update()
+    {
         Debug.DrawRay(_transform.position, _transform.forward, Color.grey, 0.1f);
     }
 
 
-    //Currently target point does nothing 
-    public void Fire(Vector3 targetPoint){
 
+    //passing in positive infinity will cause weapon to fire straight forward
+    public void Fire(Vector3 targetPoint, bool targetInfinity)
+    {
 
-        Vector3 targetDirection = targetPoint - _transform.position;
-        Quaternion targetHeading = Quaternion.LookRotation(targetDirection, Vector3.up);
-        Debug.DrawRay(_transform.position, targetDirection, Color.red, 1.0f);
+        Quaternion targetHeading = _transform.rotation;
+        Vector3 targetDirection = Vector3.back;
 
-        Instantiate(ammoPrefab, _transform.position , targetHeading);
+        if (!targetInfinity)
+        {
+            targetDirection = targetPoint - _transform.position;
+            targetHeading = Quaternion.LookRotation(targetDirection, Vector3.up);
+
+        }
+
+        Debug.DrawRay(_transform.position, targetDirection, Color.red, 2.0f);
+        Instantiate(ammoPrefab, _transform.position, targetHeading);
         _fireSound.Play();
+
     }
 
 }
