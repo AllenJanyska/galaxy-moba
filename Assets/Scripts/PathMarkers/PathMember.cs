@@ -19,7 +19,9 @@ public class PathMember : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
-        _RedNeighborTrans = _RedNeighbor.GetComponent<Transform>();
+        if(_RedNeighbor != null){
+            _RedNeighborTrans = _RedNeighbor.GetComponent<Transform>();
+        }
         _selfTrans = gameObject.GetComponent<Transform>();
 
         PathMember temp = _RedNeighbor.GetComponent<PathMember>();

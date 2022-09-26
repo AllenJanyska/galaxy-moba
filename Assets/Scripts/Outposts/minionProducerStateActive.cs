@@ -8,11 +8,9 @@ public class minionProducerStateActive : minionProducerState
 
     // Start is called before the first frame update
     void Start()
-    {
-        
+    { 
         setProduction(true);
         _productionRate = 5f;
-
     }
 
     public float getProductionRate(){

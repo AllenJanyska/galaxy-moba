@@ -9,10 +9,4 @@ public class minionProducerStateInactive : minionProducerState
     {
         setProduction(false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

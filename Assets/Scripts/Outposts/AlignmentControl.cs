@@ -16,6 +16,8 @@ public class AlignmentControl : MonoBehaviour
     private GameController _gameController;
 
     private minionCreation _minionCreationCache;
+    private turretProducer _turretCreationCache;
+    private OutpostController _outpostProducerCache;
 
     /// <summary>All GameObjects around the outpost that change color when the team is changed.
     ///This is defined through the unity editor as part of the prefab</summary>
@@ -25,26 +27,26 @@ public class AlignmentControl : MonoBehaviour
     private LinkedList<colorController> _colorElementCache = new LinkedList<colorController>();
 
     private TeamNames _destTeam;
-    private TeamNames _curTeam = TeamNames.None;
 
     [SerializeField] private state _curState = state.neutral;
 
     // Start is called before the first frame update
     void Start()
     {
-        _curState = state.neutral;
-
         for (int i = 0; i < _colorElements.Length; i++)
         {
             _colorElementCache.AddFirst(_colorElements[i].GetComponent<colorController>());
 
         }
 
-        //"Text: " + myText.text
         Debug.Log("color elements on outpost: " + _colorElementCache.Count);
         _gameController = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameController>();
-        _minionCreationCache = gameObject.GetComponent<minionCreation>();
+        _turretCreationCache = gameObject.GetComponent<turretProducer>();
+        _outpostProducerCache = gameObject.GetComponent<OutpostController>();
 
+        if(_curState != state.neutral){
+            CompleteCap();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,14 +83,20 @@ public class AlignmentControl : MonoBehaviour
     {
 
         //Change color of all connected elements
+        // this could probably be parallelized somehow
         for (LinkedListNode<colorController> i = _colorElementCache.First; i != null; i = i.Next)
         {
-            i.Value.SetTeam(_curTeam);
+            i.Value.SetTeam(_outpostProducerCache.getTeam());
         }
 
-        if (_minionCreationCache != null)
+        if (_outpostProducerCache != null)
         {
-            _minionCreationCache.Activate();
+            _outpostProducerCache.startMinionProduction();
+        }
+
+        if (_turretCreationCache != null)
+        {
+            _turretCreationCache.Activate();
         }
 
     }
@@ -98,11 +106,10 @@ public class AlignmentControl : MonoBehaviour
 
         yield return new WaitForSeconds(5);
         _curState = state.owned;
-        _curTeam = _destTeam;
+        _outpostProducerCache.setTeam(_destTeam);
         _destTeam = TeamNames.None;
 
         CompleteCap();
-
     }
 
 

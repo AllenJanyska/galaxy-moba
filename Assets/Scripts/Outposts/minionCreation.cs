@@ -16,19 +16,17 @@ public class minionCreation : MonoBehaviour
     [SerializeField] private GameObject minionPrefab;
     private productionState _curProduction;
     private float _productionRate;
-    private Dictionary<productionState, minionProducerState> _minionStates;
 
     private AlignmentControl _alignmnetControllerCache;
-    // Start is called before the first frame update
+
+    private MapController _mapController;
 
     void Start()
     {
-        _minionStates = new Dictionary<productionState, minionProducerState>();
-        _minionStates.Add(productionState.Active, new minionProducerStateActive());
-        _minionStates.Add(productionState.Inactive, new minionProducerStateInactive());
-
         _alignmnetControllerCache = gameObject.GetComponent<AlignmentControl>();
         
+        _mapController = GameObject.FindGameObjectsWithTag("MapController")[0].GetComponent<MapController>();
+
     }
 
     void setProduction(productionState new_state){
@@ -36,10 +34,10 @@ public class minionCreation : MonoBehaviour
     }
 
 
-    public void Activate(){
+    public void Activate(List<Vector3> path){
         _curProduction = productionState.Active;
 
-        StartCoroutine("Produce");
+        StartCoroutine(Produce(path));
     }
 
     public void Deavtivate(){
@@ -48,15 +46,20 @@ public class minionCreation : MonoBehaviour
     }
 
 
-    private IEnumerator Produce(){
+    private IEnumerator Produce(List<Vector3> movementPath){
+
+        Debug.Log("begining construction");
 
         yield return new WaitForSeconds(5);
 
-        Debug.Log("makeing minion");
-        Instantiate(minionPrefab, transform.position, Quaternion.Euler(0.0f,0.0f,0.0f));
+        Debug.Log("making minion");
 
+        // figure out if i can pass args to an instantiated prefab
+        // otherwise i can create 2 different minion prefabs
+        GameObject minion = Instantiate(minionPrefab, transform.position, Quaternion.Euler(0.0f,0.0f,0.0f));
+        minion.GetComponent<MinionMovement>().setLaneMarkers(movementPath);
 
-        StartCoroutine("Produce");
+        StartCoroutine(Produce(movementPath));
 
     }
     
