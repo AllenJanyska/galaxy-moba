@@ -136,6 +136,21 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 10.17
   m_Center: {x: 0, y: 0, z: 1.77}
+--- !u!114 &-4832037918049712859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291818955303216673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 832a184f4781a4225a27ab8b715ed7bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turretPrefab: {fileID: 4725103311671011886, guid: 363217370250a4eb19402252e5dd507c, type: 3}
+  turretAnchors:
+  - {fileID: 0}
 --- !u!114 &1404895450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,11 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df7c3a5ee38f52540a2bda70c4aeb6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretLocations:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  turretAnchors: []
 --- !u!1001 &2409296297777683312
 PrefabInstance:
   m_ObjectHideFlags: 0

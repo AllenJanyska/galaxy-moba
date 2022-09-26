@@ -8,6 +8,7 @@ TagManager:
   - WeaponControl
   - PlayerController
   - Structure
+  - MapController
   layers:
   - Default
   - TransparentFX
