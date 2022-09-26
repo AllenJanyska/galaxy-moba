@@ -8,6 +8,8 @@ public class colorController : MonoBehaviour
     [SerializeField] private Color _targetColor = Color.gray; 
     private MeshRenderer _redererCache;
     private GameController _gameController;
+    [SerializeField] private OutpostController _parentObject;
+
     void Start()
     {
         //cache the mesh rederer
@@ -15,12 +17,14 @@ public class colorController : MonoBehaviour
 
         //Cache the global game controller
         _gameController = GameObject.FindGameObjectsWithTag("GameController")[0].GetComponent<GameController>();
+        _parentObject = gameObject.GetComponentInParent(typeof(OutpostController)) as OutpostController;
 
+        SetTeam(_parentObject.getTeam());
     }
 
     public void SetTeam(TeamNames team){
         Debug.Log(team.ToString());
-        Debug.Log("updating team");
+        Debug.Log("updating team colors");
         _targetColor = _gameController.getTeamColor(team);
         SetColor(_targetColor);
         
